@@ -1,0 +1,22 @@
+name: LedFx
+version: "2.2.1-1"
+slug: ledfx
+description: Audio-reactive LED effects with LedFx, fed by Music Assistant via Sendspin
+url: https://github.com/jussty/ha-addons/tree/main/ledfx
+arch:
+  - amd64
+  - aarch64
+startup: application
+boot: auto
+# Host network: LedFx sends UDP/DDP/E1.31 to the LED controllers and reaches the Sendspin server
+# of Music Assistant on the same host (ws://127.0.0.1:8927/sendspin).
+host_network: true
+ports:
+  8888/tcp: 8888
+ports_description:
+  8888/tcp: LedFx web interface (no authentication)
+webui: "http://[HOST]:[PORT:8888]"
+options:
+  verbose: false
+schema:
+  verbose: bool
