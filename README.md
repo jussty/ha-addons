@@ -9,4 +9,8 @@ Repositories**: `https://github.com/jussty/ha-addons`
 | --- | --- |
 | [LedFx](ledfx/) | Audio-reactive LED effects with LedFx, fed by Music Assistant via Sendspin |
 
+| Tool | Description |
+| --- | --- |
+| [sync-test](tools/sync-test/) | Test track and procedure for lining up LEDs with speakers (LedFx audio delay) |
+
 These add-ons are built for my own setup and shared as they are. No warranty.

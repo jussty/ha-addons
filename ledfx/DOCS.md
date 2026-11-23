@@ -29,7 +29,9 @@ contains it, drives the LEDs.
    - Play to it directly, or add it to a group.
    - To keep the LEDs in step with speakers that use another protocol (Sonos, AirPlay,
      Chromecast), put both in a *Universal Group*.
-   - If the LEDs run ahead of the speakers, set **Settings → Audio → Delay (ms)**.
+   - If the LEDs run ahead of the speakers, set **Settings → Audio → Delay (ms)**. To measure the
+     offset, use the test track in
+     [`tools/sync-test`](https://github.com/jussty/ha-addons/tree/main/tools/sync-test).
 
 ## Notes
 
