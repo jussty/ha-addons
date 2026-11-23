@@ -15,6 +15,15 @@ contains it, drives the LEDs.
    runs on the same host. Discovery may offer a different address, because Music Assistant
    announces its `publish_ip`.
 3. **Settings → Audio:** pick `SENDSPIN: <server name>` as the audio device.
+   - **LedFx 2.2.1 bug:** On a host without any sound device, the audio device list fails with
+     `tuple index out of range` until a device has been selected once.
+   - Select the Sendspin device through the API instead. With a single Sendspin server it is
+     index `0`:
+
+     ```bash
+     curl -X PUT http://<ha-host>:8888/api/audio/devices -H 'Content-Type: application/json' \
+          -d '{"audio_device": 0}'
+     ```
 4. Add your devices and pick an effect.
 5. In Music Assistant, the player shows up under the client name configured in step 2.
    - Play to it directly, or add it to a group.
@@ -27,8 +36,11 @@ contains it, drives the LEDs.
 - **Do not `POST /api/config`.** LedFx treats it as an import and replaces the whole configuration.
   To change single values, use `PUT /api/config`. LedFx writes a backup (`config_backup_*.json`)
   before an import.
+- **`PUT /api/config` for `audio`:** always include `audio_device`, for example
+  `{"audio": {"audio_device": 0, "delay_ms": 500}}`. Without it, LedFx looks for a default device
+  and hits the bug above. `audio_device_name` is rejected as an unknown key.
 - **Changing the audio delay restarts the audio stream.** Music Assistant may stop the playback;
-  start it again.
+  start it again. If the LEDs stay dark afterwards, restart the add-on.
 - **UDP devices:** turn off *Minimise Traffic* for receivers with a short timeout, such as the
   ESPHome `wled` effect. Otherwise a static frame stops being sent and the receiver blanks.
 - **No authentication:** The web interface has none and listens on the host network, port 8888.
